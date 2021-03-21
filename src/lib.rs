@@ -58,12 +58,7 @@ mod tests {
         let xs = vec![1, 2, 3];
         let ys = vec![4, 5, 6];
 
-        let zs = vector::zip_with(xs, ys, |x, y| x + y);
-        println!("{:?}", zs);
-
-        assert_eq!(zs[0], 5);
-        assert_eq!(zs[1], 7);
-        assert_eq!(zs[2], 9);
+        assert_eq!(vector::zip_with(xs, ys, |x, y| x + y), vec![5, 7, 9]);
     }
 
     #[test]
