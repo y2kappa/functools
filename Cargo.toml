@@ -1,5 +1,5 @@
 [package]
-name = "functools"
+name = "ftools"
 version = "0.1.0"
 authors = ["Marius Ciubotariu <marius.ciubotariu@gmail.com>"]
 edition = "2018"
