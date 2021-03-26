@@ -1,4 +1,4 @@
-mod vector {
+pub mod vector {
     pub fn init<T>(capacity: usize, f: fn(usize) -> T) -> Vec<T> {
         let mut v = Vec::with_capacity(capacity);
         for i in 0..capacity {
@@ -27,7 +27,7 @@ mod vector {
     }
 }
 
-mod truth {
+pub mod truth {
     // or something that implements iter
     pub fn all<'a, T>(elems: &'a Vec<T>, f: fn(&'a T) -> bool) -> bool {
         elems.iter().fold(true, |acc, x| acc && f(x))
@@ -35,6 +35,17 @@ mod truth {
 
     pub fn any<'a, T>(elems: &'a Vec<T>, f: fn(&'a T) -> bool) -> bool {
         elems.iter().fold(false, |acc, x| acc || f(x))
+    }
+}
+
+pub mod futures {
+    #[macro_export]
+    macro_rules! pipe {
+        ($init:tt $(=>$fn:ident)+) => {{
+            let mut r = $init;
+            $( r = $fn(r).await; )*
+            r
+        }}
     }
 }
 
@@ -88,5 +99,23 @@ mod tests {
         let is_even = |x| x % 2 == 0;
 
         assert_eq!(truth::any(&xs, is_even), true)
+    }
+
+    async fn double(x: i32) -> i32 {
+        x + x
+    }
+    async fn square(x: i32) -> i32 {
+        x * x
+    }
+
+    #[tokio::test]
+    async fn test_piping() {
+        let x = pipe!(2
+            => double
+            => square
+            => double
+            => square);
+
+        assert_eq!(x, 1024);
     }
 }

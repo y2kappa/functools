@@ -1,6 +1,6 @@
 [package]
 name = "ftools"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Marius Ciubotariu <marius.ciubotariu@gmail.com>"]
 edition = "2018"
 description = "Functional utilities for Rust"
@@ -11,3 +11,7 @@ repository = "https://github.com/y2kappa/functools"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dev-dependencies]
+tokio = {version="1.4.*", features=["full"]}
+futures = "0.3.*"
