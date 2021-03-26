@@ -15,3 +15,16 @@ let is_odd = |x| x % 2 != 0;
 
 assert_eq!(truth::all(&xs, is_odd), true)
 ```
+
+Async pipe. Instead of:
+
+```rust
+let x = f(1).await;
+let y = g(x).await;
+let z = h(y).await;
+```
+
+you can do:
+```rust
+let x = pipe!(1 => f => g => h);
+```
