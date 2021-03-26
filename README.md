@@ -2,6 +2,11 @@
 
 Collection of functional utilities for Rust.
 
+[![Crates.io][crates-badge]][crates-url]
+
+[crates-badge]: https://img.shields.io/crates/v/ftools.svg
+[crates-url]: https://crates.io/crates/ftools
+
 ```rust
 let xs = vec![1, 2, 3];
 let ys = vec![4, 5, 6];
